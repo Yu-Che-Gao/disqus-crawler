@@ -1,9 +1,15 @@
-var express = require('express');
-var app = express();
-var port = process.env.PORT || 80;
+const express = require('express');
+const app = express();
+const request = require('request');
+
+const port = process.env.PORT || 80;
 
 app.get('/', function (req, res) {
-  res.send('Hello Everybody!');
+  request('https://disqus.com/api/3.0/forums/listThreads.json', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      res.send(body);
+    }
+  });
 });
 
 app.listen(port, function () {
