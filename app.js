@@ -10,7 +10,12 @@ const port = process.env.PORT || 80;
 
 app.get('/', function (req, res) {
   request(disqusForumAddress + '/listThreads.json?forum=' + disqusForum + '&api_key=' + disqusPublicKey, function (error, response, body) {
-    res.send(body);
+    let JSONparse=JSON.parse(body);
+    let responseArray=JSONparse.response;
+    for(let i=0; i<responseArray.length; i++) {
+      res.send(responseArray[i]);
+      res.send('<br/>');
+    }
   });
 });
 
