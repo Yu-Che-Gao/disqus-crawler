@@ -1,11 +1,12 @@
 // Setup basic express server
 var express = require('express');
 var app = express();
+var port = 80;
 
-app.get('/', function (req, res) {
+app.get('/myHello', function (req, res) {
   res.send('Hello World!');
 });
 
-app.listen(80, function () {
-  console.log('Example app listening on port 3000!');
+app.listen(port, function () {
+  console.log('Example app listening on port ' + port + '!');
 });
