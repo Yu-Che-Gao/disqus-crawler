@@ -6,9 +6,7 @@ const port = process.env.PORT || 80;
 
 app.get('/', function (req, res) {
   request('https://disqus.com/api/3.0/forums/listThreads.json?forum=renthouserobot', function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      res.send(body);
-    }
+    res.send(body);
   });
 });
 
