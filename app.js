@@ -8,7 +8,7 @@ const disqusForum = 'renthouserobot';
 const port = process.env.PORT || 80;
 
 app.get('/', function (req, res) {
-  request('https://disqus.com/api/3.0/forums/listThreads.json?forum=' + disqusForum + '&client_id=' + disqusPublicKey + '&client_secret=' + disqusSecretKey, function (error, response, body) {
+  request('https://disqus.com/api/3.0/forums/listThreads.json?forum=' + disqusForum + '&api_key=' + disqusPublicKey, function (error, response, body) {
     res.send(body);
   });
 });
