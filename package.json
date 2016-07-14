@@ -1,0 +1,11 @@
+{
+  "name": "disqus-crawler",
+  "version": "0.0.1",
+  "description": "a simple crawler for disqus(beta)",
+  "main": "app.js",
+  "author": "Steven Gao",
+  "private": true,
+  "dependencies": {
+    "express": "4.14.0"
+  }
+}
