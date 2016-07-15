@@ -26,12 +26,13 @@ app.post('/listThreads', function (req, res) {
   for (let i = 0; i < urlArray.length; i++) {
     requestURL += '&thread:link=' + urlArray[i].link;
   }
+  
+  res.send(requestURL);
+  // console.log(requestURL);
 
-  console.log(requestURL);
-
-  request(requestURL, function (error, response, body) {
-    res.send(body);
-  });
+  // request(requestURL, function (error, response, body) {
+  //   res.send(body);
+  // });
 });
 
 app.listen(port, function () {
