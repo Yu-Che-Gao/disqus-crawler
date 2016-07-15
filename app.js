@@ -27,10 +27,10 @@ app.post('/listThreads', function (req, res) {
     requestURL += '&thread:link=' + urlArray[i].link;
   }
 
-  res.send(requestURL);
-  // request(requestURL, function (error, response, body) {
-  //   res.send(body);
-  // });
+  // res.send(requestURL);
+  request(requestURL, function (error, response, body) {
+    res.send(body);
+  });
 });
 
 app.listen(port, function () {
