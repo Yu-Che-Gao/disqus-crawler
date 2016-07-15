@@ -21,7 +21,13 @@ app.get('/', function (req, res) {
 });
 
 app.post('/listThreads', function (req, res) {
-  request(disqusForumAddress + '/listThreads.json?forum=' + disqusForum + '&api_key=' + disqusPublicKey + '&thread:link=' + req.body.link, function (error, response, body) {
+  let urlArray = JSON.parse(req.body.urlJSON);
+  let requestURL = disqusForumAddress + '/listThreads.json?forum=' + disqusForum + '&api_key=' + disqusPublicKey;
+  for (let i = 0; i < urlArray.length; i++) {
+    requestURL += '&thread:link=' + urlArray[i].link;
+  }
+
+  request(requestURL, function (error, response, body) {
     res.send(body);
   });
 });
