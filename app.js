@@ -1,31 +1,25 @@
-const express = require('express');
-const app = express();
-const request = require('request');
-
 const disqusPublicKey = 'o25Rq85nLUWhQ034GnQ8ny8ENNRPi74msQ0TCpBHZbVohG7PBP41vJEQp5sRyAJ9';
 const disqusSecretKey = 'ItYRkmy3RpxvhPESeSbKW4u4SRZp9iesVnNd2Mq2WlRCIvu3tiRmj0EkVZZxcFMf';
 const disqusForum = 'renthouserobot';
 const disqusForumAddress = 'https://disqus.com/api/3.0/forums';
 const port = process.env.PORT || 80;
 
+const express = require('express');
+const app = express();
+const request = require('request');
+const bodyParser = require('body-parser');
+
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.get('/', function (req, res) {
-  // request(disqusForumAddress + '/listThreads.json?forum=' + disqusForum + '&api_key=' + disqusPublicKey, function (error, response, body) {
-  //   let JSONparse = JSON.parse(body);
-  //   let responseArray = JSONparse.response;
-  //   let returnObject = [];
-  //   let temp = '';
-
-  //   for (let i = 0; i < responseArray.length; i++) {
-  //     let link = responseArray[i].link;
-  //     returnObject[i] = new Object();
-  //     temp += link + '<br/>';
-  //     returnObject[i].link = link;
-  //   }
-
-  //   res.send(JSON.stringify(returnObject));
-  // });
-
-  res.send('test');
+  request(disqusForumAddress + '/listThreads.json?forum=' + disqusForum + '&api_key=' + disqusPublicKey + '&thread:link=' + req.query.link, function (error, response, body) {
+    res.send(body);
+  });
 });
 
 app.listen(port, function () {
