@@ -17,7 +17,11 @@ app.use(function (req, res, next) {
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function (req, res) {
-  request(disqusForumAddress + '/listThreads.json?forum=' + disqusForum + '&api_key=' + disqusPublicKey + '&thread:link=' + req.query.link, function (error, response, body) {
+  res.send('you have no right to access this page.');
+});
+
+app.post('/listThreads', function (req, res) {
+  request(disqusForumAddress + '/listThreads.json?forum=' + disqusForum + '&api_key=' + disqusPublicKey + '&thread:link=' + req.body.link, function (error, response, body) {
     res.send(body);
   });
 });
