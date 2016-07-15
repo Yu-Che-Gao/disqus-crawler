@@ -9,21 +9,23 @@ const disqusForumAddress = 'https://disqus.com/api/3.0/forums';
 const port = process.env.PORT || 80;
 
 app.get('/', function (req, res) {
-  request(disqusForumAddress + '/listThreads.json?forum=' + disqusForum + '&api_key=' + disqusPublicKey, function (error, response, body) {
-    let JSONparse = JSON.parse(body);
-    let responseArray = JSONparse.response;
-    let returnObject = [];
-    let temp = '';
+  // request(disqusForumAddress + '/listThreads.json?forum=' + disqusForum + '&api_key=' + disqusPublicKey, function (error, response, body) {
+  //   let JSONparse = JSON.parse(body);
+  //   let responseArray = JSONparse.response;
+  //   let returnObject = [];
+  //   let temp = '';
 
-    for (let i = 0; i < responseArray.length; i++) {
-      let link = responseArray[i].link;
-      returnObject[i] = new Object();
-      temp += link + '<br/>';
-      returnObject[i].link = link;
-    }
-    
-    res.send(JSON.stringify(returnObject));
-  });
+  //   for (let i = 0; i < responseArray.length; i++) {
+  //     let link = responseArray[i].link;
+  //     returnObject[i] = new Object();
+  //     temp += link + '<br/>';
+  //     returnObject[i].link = link;
+  //   }
+
+  //   res.send(JSON.stringify(returnObject));
+  // });
+
+  res.send('test');
 });
 
 app.listen(port, function () {
