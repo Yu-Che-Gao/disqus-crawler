@@ -25,7 +25,7 @@ app.post('/listThreads', function (req, res) {
   console.log(urlArray);
   let requestURL = disqusForumAddress + '/listThreads.json?forum=' + disqusForum + '&api_key=' + disqusPublicKey;
   for (let i = 0; i < urlArray.length; i++) {
-    requestURL += '&thread:link=' + urlArray[i].link;
+    requestURL += '&thread:link=' + urlArray[i].url;
   }
 
   console.log(requestURL);
