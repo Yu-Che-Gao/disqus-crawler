@@ -22,11 +22,12 @@ app.get('/', function (req, res) {
 
 app.post('/listThreads', function (req, res) {
   let urlArray = JSON.parse(req.body.urlJSON);
-  console.log(urlArray);
   let requestURL = disqusForumAddress + '/listThreads.json?forum=' + disqusForum + '&api_key=' + disqusPublicKey;
   for (let i = 0; i < urlArray.length; i++) {
     requestURL += '&thread:link=' + urlArray[i].link;
   }
+
+  console.log(requestURL);
 
   request(requestURL, function (error, response, body) {
     res.send(body);
