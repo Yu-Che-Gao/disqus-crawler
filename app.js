@@ -27,6 +27,8 @@ app.post('/listThreads', function (req, res) {
     requestURL += '&thread:link=' + urlArray[i].url;
   }
 
+  console.log(requestURL);
+
   request(requestURL, function (error, response, body) {
     res.send(body);
   });
